@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+  <main>
+    <h1 class="my-4">Количество  запрос</h1>
+
+    <table class="table table-striped">
+
+      {% for city in cities %}
+      <tbody>
+          <tr>
+            <td>{{ city.name }}</td>
+            <td>{{ city.count_request }}</td>
+          </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+
+  </main>
+{% endblock %}

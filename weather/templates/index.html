@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load django_bootstrap5 %}
+
+
+{% block main %}
+  <main>
+    <form method="post">
+      {% csrf_token %}
+
+      {% bootstrap_form form %}
+      {% bootstrap_button button_type="submit" content="Найти" %}
+    </form>
+
+    {% if weather_place %}
+      <table>
+          <tr>
+            <td>Место</td>
+            <td>{{ weather_place.address }}</td>
+          </tr>
+          <tr>
+            <td>Время</td>
+            <td>{{ weather_place.time }}</td>
+          </tr>
+          <tr>
+            <td>Температура </td>
+            <td>{{ weather_place.temperature }} в градусах Цельсия</td>
+          </tr>
+          <tr>
+            <td>Погода</td>
+            <td>{{ weather_place.weather }}</td>
+          </tr>
+          <tr>
+            <td>Скорость ветра</td>
+            <td>{{ weather_place.wind }}  в м/с</td>
+          </tr>
+      </table>
+    {% endif %}
+
+    {% if history %}
+    <h1>История последних запросов</h1>
+    <table>
+      {% for city in history %}
+        <tr>
+          <td>{{ city }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+
+  </main>
+{% endblock %}
